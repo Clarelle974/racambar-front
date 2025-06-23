@@ -83,7 +83,7 @@ function App() {
 		<main className="home">
 			<h1>Bienvenue chez Carambar & Co</h1>
 			<section className="random-joke-container">
-				<button type="button" onClick={fetchRandomJoke}>
+				<button type="button" className ="trapezoid" onClick={fetchRandomJoke}>
 					Ta best Joke de Maintenant{" "}
 				</button>
 				<p className="joke">{joke}</p>
@@ -114,17 +114,17 @@ function App() {
 					<p className="joke">{jokeById}</p>
 				) : (
 					<p className="joke">
-						{jokeById.question} <br /><em>- {jokeById.answer}</em>
+						<b>{jokeById.question}</b> <br /><em>- {jokeById.answer}</em>
 					</p>
 				)}
 			</section>
 			<section className="all-jokes-container">
 				{!showAll ? (
-					<button type="button" onClick={fetchAllJokes}>
+					<button type="button" className ="trapezoid" onClick={fetchAllJokes}>
 						Voir toutes les blagues
 					</button>
 				) : (
-					<button type="button" onClick={backToTop}>
+					<button type="button" className ="trapezoid"onClick={backToTop}>
 						Revenir en haut
 					</button>
 				)}
@@ -133,11 +133,11 @@ function App() {
 					<ul>
 						{allJokes.map((j, index) => (
 							<li key={j.id || index}>
-								{j.question} <br />
+								<b>{j.question}</b> <br />
 								<em>Réponse : {j.answer}</em>
 							</li>
 						))}
-            <button type="button" onClick={backToTop}>
+            <button type="button" className ="trapezoid" onClick={backToTop}>
 						Revenir en haut
 					</button>
 					</ul>
