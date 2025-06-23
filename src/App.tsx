@@ -10,8 +10,8 @@ type Joke = {
 
 function App() {
 	const [joke, setJoke] = useState("Clique pour voir !");
-	const [jokeCount, setJokeCount] = useState(0);
-	const [jokeById, setJokeById] = useState("");
+	const [jokeCount, setJokeCount] = useState<number>(0);
+	const [jokeById, setJokeById] = useState<Joke | string>("");
 	const [showAll, setShowAll] = useState(false);
 	const [allJokes, setAllJokes] = useState<Joke[]>([]);
 
@@ -24,7 +24,6 @@ function App() {
 			} else {
 				setJoke("Aucune blague trouvée.");
 			}
-			
 		} catch (error) {
 			setJoke("Erreur lors de la récupération de la blague.");
 			console.info(error);
@@ -35,7 +34,6 @@ function App() {
 		const fetchJokeCount = async () => {
 			try {
 				const res = await fetch(`${API_BASE_URL}/jokes/count`);
-        console.log(`${API_BASE_URL}/jokes/count`);
 				const data = await res.json();
 				setJokeCount(data.count);
 			} catch (error) {
@@ -54,7 +52,7 @@ function App() {
 			const res = await fetch(`${API_BASE_URL}/jokes/${id}`);
 			const data = await res.json();
 			if (data?.question && data?.answer) {
-				setJokeById(`${data.question} ${data.answer}`);
+				setJokeById(data);
 			} else {
 				setJokeById("Aucune blague trouvée.");
 			}
@@ -112,7 +110,13 @@ function App() {
 					</div>
 				)}
 
-				{jokeById && <p className="joke">{jokeById}</p>}
+				{typeof jokeById === "string" ? (
+					<p className="joke">{jokeById}</p>
+				) : (
+					<p className="joke">
+						{jokeById.question} <br /><em>- {jokeById.answer}</em>
+					</p>
+				)}
 			</section>
 			<section className="all-jokes-container">
 				{!showAll ? (
@@ -125,14 +129,22 @@ function App() {
 					</button>
 				)}
 				{showAll && (
+          
 					<ul>
 						{allJokes.map((j, index) => (
 							<li key={j.id || index}>
-								{j.question} Réponse : {j.answer}
+								{j.question} <br />
+								<em>Réponse : {j.answer}</em>
 							</li>
 						))}
+            <button type="button" onClick={backToTop}>
+						Revenir en haut
+					</button>
 					</ul>
-				)}
+          
+				)
+        }
+        
 			</section>
 		</main>
 	);

@@ -1,76 +1,75 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
-
- /* Colors set  */
+/* Colors set  */
 :root {
-  --primary: #fedb27;
-  --secundary: #e3097e;
-  --text1:#05153b;
-  --text2: white;}
+	--primary: #fedb27;
+	--secundary: #e3097e;
+	--text1: #05153b;
+	--text2: white;
+}
 
 #root {
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  background-color: var(--primary);
-  min-height: 100vh;
-  min-width: 100vw;
-  font-family: "Montserrat", sans-serif;
-  font-optical-sizing: auto;
-  color:var(--text)
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	background-color: var(--primary);
+	min-height: 100vh;
+	min-width: 100vw;
+	font-family: "Montserrat", sans-serif;
+	font-optical-sizing: auto;
+	color: var(--text);
 }
 
-h1{
-  font-size: 2rem;
+h1 {
+	font-size: 2rem;
 }
-.home{
-  & section {
-    background-color:var(--secundary);
-    margin : 2rem auto;
-    padding:2rem;
-    & button{
-      border-radius: 2rem 5rem 4rem 8rem;
-      padding:2rem;
-    }
-    & p.joke{
-      color : var(--text2);}
-  }
-  & .id-joke-container {
-    background-color: var(--text2);
-    & button{
-  background-color: var(--secundary);
-  color: var(--text2);
-  border-radius: 50%;
-  aspect-ratio: 1 ;
-  width:2rem;
-  margin: 0;
-  padding: 0;
+.home {
+	& section {
+		background-color: var(--secundary);
+		margin: 2rem auto;
+		padding: 2rem;
+		& button {
+			border-radius: 2rem 5rem 4rem 8rem;
+			padding: 2rem;
+		}
+		& p.joke {
+			color: var(--text2);
+		}
+	}
+	& .id-joke-container {
+		background-color: var(--text2);
+		& p.joke {
+			color: var(--text1);
+		}
+		& button {
+			background-color: var(--secundary);
+			color: var(--text2);
+			border-radius: 50%;
+			aspect-ratio: 1;
+			width: 2rem;
+			margin: 1rem;
+			padding: 0;
+			gap: 1rem;
+		}
+	}
+	& .all-jokes-container {
+		color: var(--text2);
+		& ul {
+			list-style-type: none;
+			padding: 0;
+			& li {
+				margin-top: 1rem;
+				margin-bottom: 1rem;
+			}
+		}
+	}
 }
-  }
-}
-
-
-
-
-/* @keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
-
-/* @media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-} */
 
 @media screen and (min-width: 768px) {
-  h1 {
-    font-size: 4rem;
-  }
-  .home section {
-    max-width: 75%;   }
+	h1 {
+		font-size: 4rem;
+	}
+	.home section {
+		max-width: 75%;
+	}
 }
