@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 const API_BASE_URL = import.meta.env.VITE_API_URL;
 
@@ -10,6 +10,7 @@ type Joke = {
 
 function App() {
 	const [joke, setJoke] = useState("Clique pour voir !");
+	const [jokeCount, setJokeCount] = useState(0);
 	const [jokeById, setJokeById] = useState("");
 	const [showAll, setShowAll] = useState(false);
 	const [allJokes, setAllJokes] = useState<Joke[]>([]);
@@ -23,12 +24,30 @@ function App() {
 			} else {
 				setJoke("Aucune blague trouvée.");
 			}
-			console.log(`${API_BASE_URL}/jokes/random`);
+			
 		} catch (error) {
 			setJoke("Erreur lors de la récupération de la blague.");
 			console.info(error);
 		}
 	};
+
+	useEffect(() => {
+		const fetchJokeCount = async () => {
+			try {
+				const res = await fetch(`${API_BASE_URL}/jokes/count`);
+        console.log(`${API_BASE_URL}/jokes/count`);
+				const data = await res.json();
+				setJokeCount(data.count);
+			} catch (error) {
+				console.error(
+					"Erreur lors de la récupération du nombre de blagues :",
+					error,
+				);
+			}
+		};
+
+		fetchJokeCount();
+	}, []);
 
 	const fetchJokeById = async (id: number) => {
 		try {
@@ -73,20 +92,23 @@ function App() {
 			</section>
 
 			<section className="id-joke-container">
-				<h2>Coup de chance ? Clique pour voir !</h2>
-				{allJokes.length === 0 ? (
+				<h2>Ton numéro de chance ? Clique pour voir !</h2>
+				{jokeCount === 0 ? (
 					<p>Pas de blague en stock ...</p>
 				) : (
 					<div className="buttons">
-						{allJokes.map((j) => (
-							<button
-								type="button"
-								key={j.id}
-								onClick={() => fetchJokeById(j.id)}
-							>
-								{j.id}
-							</button>
-						))}
+						{Array.from({ length: jokeCount }, (_, i) => {
+							const jokeId = i + 1;
+							return (
+								<button
+									type="button"
+									key={jokeId}
+									onClick={() => fetchJokeById(i + 1)}
+								>
+									{i + 1}
+								</button>
+							);
+						})}
 					</div>
 				)}
 
@@ -105,7 +127,9 @@ function App() {
 				{showAll && (
 					<ul>
 						{allJokes.map((j, index) => (
-							<li key={j.id || index}>{j.question} Réponse : {j.answer}</li>
+							<li key={j.id || index}>
+								{j.question} Réponse : {j.answer}
+							</li>
 						))}
 					</ul>
 				)}
