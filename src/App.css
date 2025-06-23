@@ -6,6 +6,7 @@
 	--secundary: #e3097e;
 	--text1: #05153b;
 	--text2: white;
+  --focus1:rgb(99, 197, 246);
 }
 
 #root {
@@ -18,24 +19,52 @@
 	font-family: "Montserrat", sans-serif;
 	font-optical-sizing: auto;
 	color: var(--text);
+  
 }
 
 h1 {
 	font-size: 2rem;
 }
+.trapezoid{
+  clip-path: polygon(5% 0, 95% 0, 100% 98%, 0% 98%);
+   &:focus {
+  outline: none;
+  background-color: var(--focus1);
+  font-weight: bold;
+  }
+}
 .home {
+   & h1 {
+    margin:5rem 0;
+   }
 	& section {
+    position: relative;
 		background-color: var(--secundary);
 		margin: 2rem auto;
 		padding: 2rem;
+    z-index: 2  ;
 		& button {
-			border-radius: 2rem 5rem 4rem 8rem;
 			padding: 2rem;
+      z-index: 3;
+      border:none;
 		}
 		& p.joke {
 			color: var(--text2);
 		}
 	}
+  & section.random-joke-container{
+    & ::before{
+    content:"";
+    border: 0.3rem dashed var(--text2);
+    position: absolute;
+    top: -0.5rem;    
+    left: -0.5rem;
+    right: -0.5rem;
+    bottom: -0.5rem;
+    z-index: 1 ;
+    pointer-events: none;
+   }
+  }
 	& .id-joke-container {
 		background-color: var(--text2);
 		& p.joke {
@@ -50,16 +79,34 @@ h1 {
 			margin: 1rem;
 			padding: 0;
 			gap: 1rem;
-		}
+      &:focus {
+       outline-color: var(--focus1);
+		}}
 	}
-	& .all-jokes-container {
+	& section.all-jokes-container {
+    z-index: 2  ;
+    &button{
+      z-index: 3  ;
+    }
+    
+    & ::before{
+    content:"";
+    border: 0.3rem dashed var(--text2);
+    position: absolute;
+    top: -0.5rem;    
+    left: -0.5rem;
+    right: -0.5rem;
+    bottom: -0.5rem;
+    z-index: 1;
+    pointer-events: none;
+   }
 		color: var(--text2);
 		& ul {
 			list-style-type: none;
 			padding: 0;
 			& li {
-				margin-top: 1rem;
-				margin-bottom: 1rem;
+				margin-top: 2rem;
+				margin-bottom: 2rem;
 			}
 		}
 	}
@@ -67,9 +114,13 @@ h1 {
 
 @media screen and (min-width: 768px) {
 	h1 {
-		font-size: 4rem;
+		font-size: 3rem;
 	}
 	.home section {
 		max-width: 75%;
 	}
+  button.trapezoid{
+    width:40vw;
+    height: 30vh;
+  }
 }
