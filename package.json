@@ -1,14 +1,17 @@
 {
   "name": "carambar-front",
+  "homepage": "https://Clarelle974.github.io/racambar-front",
+
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite dist",
     "lint": "biome check .",
     "format": "biome format .",
     "preview": "vite preview",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
