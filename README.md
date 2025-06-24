@@ -1,54 +1,80 @@
-# React + TypeScript + Vite
+# 🃏 Racambar - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the frontend of Racambar, a mini web application for Carambar-style jokes 🍬
 
-Currently, two official plugins are available:
+✨ About the Project
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Racambar is a simple and playful web application developed as part of a recruitment process for a web development program.
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🚀 Live Demo
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+➡️ View the app on GitHub Pages: https://clarelle974.github.io/racambar-front/
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🛠️ Tech Stack
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+- React (with Vite: https://vitejs.dev/)
+- CSS (custom styling with clip-path, media queries, and CSS variables)
+- Deployment: Manual via GitHub Pages
+
+---
+
+## 📁 Project Structure
+
+racambar-front/
+├── public/              # Static assets
+├── src/                 # React source code
+│   ├── components/
+│   ├── pages/
+│   └── App.jsx
+├── dist/                # Build output (auto-generated)
+├── vite.config.js       # Vite configuration
+├── package.json
+└── README.md
+
+## ⚙️ Run Locally
+
+Clone the repository:
+
+git clone https://github.com/Clarelle974/racambar-front.git
+cd racambar-front
+
+Create a .env file in the root directory of the project.
+
+- Add any necessary environment variables following the example of .env.sample.
+- Variables prefixed with VITE_ are automatically loaded by Vite and can be accessed in your code with import.meta.env.VITE_API_BASE_URL.
+- Make sure not to commit your .env file if it contains sensitive information (add it in the .gitgnore file)
+
+Install dependencies:
+
+npm install
+
+Start the dev server:
+
+npm run dev
+
+Open the app in your browser at http://localhost:5173
+
+## 📦 Build & Manual Deployment
+
+1. Build the project
+
+npm run build
+
+This creates a dist/ folder with the production-ready files.
+
+2. Deploy to GitHub Pages
+
+npm run deploy
+
+Make sure your repository is configured to use the gh-pages branch as the GitHub Pages source.
+
+🔗 Useful Links
+
+Backend API repository: https://github.com/Clarelle974/racambar-back.git
+
+API documentation (Swagger): https://racambar-api.onrender.com/api-docs
+
+
